@@ -3,9 +3,7 @@ import tokens from './tokens'
 
 // https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events#The_old-fashioned_way
 function event (name) {
-  var evt = document.createEvent('Event')
-  evt.initEvent(name, true, true)
-  return evt
+  return new Event(name);
 }
 
 export default function (el, binding) {
@@ -18,11 +16,9 @@ export default function (el, binding) {
   }
 
   if (el.tagName.toLocaleUpperCase() !== 'INPUT') {
-    var els = el.getElementsByTagName('input')
-    if (els.length !== 1) {
-      throw new Error("v-mask directive requires 1 input, found " + els.length)
-    } else {
-      el = els[0]
+    el = el.querySelector('input:not([type=hidden])')
+    if (!el) {
+      throw new Error("v-mask directive requires an input")
     }
   }
 
@@ -41,6 +37,8 @@ export default function (el, binding) {
       cancelable: true
       isTrusted: false
     */
+   if (['deleteContentBackward', 'deleteContentForward'].includes(evt.inputType)) return
+   
     // by default, keep cursor at same position as before the mask
     var position = el.selectionEnd
     // save the character just inserted
