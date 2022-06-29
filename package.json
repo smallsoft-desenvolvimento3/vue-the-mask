@@ -1,6 +1,6 @@
 {
   "name": "vue-the-new-mask",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "Fork of Tiny (2KB) and dependency free mask input for Vue.js",
   "main": "dist/vue-the-new-mask.js",
   "scripts": {
