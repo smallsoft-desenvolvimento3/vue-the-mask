@@ -6,6 +6,7 @@ function event (name) {
   return new Event(name);
 }
 
+let didUpdate;
 export default function (el, binding) {
   var config = binding.value
   if (Array.isArray(config) || typeof config === 'string') {
@@ -37,25 +38,33 @@ export default function (el, binding) {
       cancelable: true
       isTrusted: false
     */
-   if (['deleteContentBackward', 'deleteContentForward'].includes(evt.inputType)) return
-   
-    // by default, keep cursor at same position as before the mask
-    var position = el.selectionEnd
-    // save the character just inserted
-    var digit = el.value[position-1]
-    el.value = masker(el.value, config.mask, true, config.tokens)
-    // if the digit was changed, increment position until find the digit again
-    while (position < el.value.length && el.value.charAt(position-1) !== digit) {
-      position++
-    }
-    if (el === document.activeElement) {
-      el.setSelectionRange(position, position)
-      setTimeout(function () {
+
+    try {
+      if (['deleteContentBackward', 'deleteContentForward'].includes(evt.inputType)) return
+      // by default, keep cursor at same position as before the mask
+      var position = el.selectionEnd
+      // save the character just inserted
+      var digit = el.value[position-1]
+      el.value = masker(el.value, config.mask, true, config.tokens)
+      // if the digit was changed, increment position until find the digit again
+      while (position < el.value.length && el.value.charAt(position-1) !== digit) {
+        position++
+      }
+      if (el === document.activeElement) {
         el.setSelectionRange(position, position)
-      }, 0)
+        setTimeout(function () {
+          el.setSelectionRange(position, position)
+        }, 0)
+      }
+    } finally {
+      el.dispatchEvent(event('input'))
     }
-    el.dispatchEvent(event('input'))
+    
   }
+
+  if (didUpdate) return;
+
+  didUpdate = true;
 
   var newDisplay = masker(el.value, config.mask, true, config.tokens)
   if (newDisplay !== el.value) {
