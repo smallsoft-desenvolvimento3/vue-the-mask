@@ -1,5 +1,5 @@
 <template>
-<input type="text" v-mask="config" :value="display" @input="onInput" />
+  <input type="text" v-mask="config" :value="display" @input="onInput" />
 </template>
 
 <script>
@@ -58,7 +58,7 @@ export default {
 
     refresh (value) {
       this.display = value
-      var value = masker(value, this.mask, this.masked, this.tokens)
+      value = masker(value, this.mask, this.masked, this.tokens)
       if (value !== this.lastValue) {
         this.lastValue = value
         this.$emit('input', value)
