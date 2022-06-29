@@ -1,8 +1,8 @@
-import install, { TheMask, tokens, mask, version } from '../dist/vue-the-mask'
+import install, { TheMask, tokens, mask, version } from '../dist/vue-the-new-mask'
 import src_tokens from '../src/tokens'
 import src_mask from '../src/directive'
 
-const VueTheMask = require('../dist/vue-the-mask')
+const VueTheMask = require('../dist/vue-the-new-mask')
 
 test('TheMask is not default', () => {
   expect(TheMask.name).toBe('TheMask')

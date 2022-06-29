@@ -11,9 +11,9 @@ A lightweight (2KB gzipped) and dependency free mask input created specific for 
 ## Install
 
 ```
-yarn add vue-the-mask
+yarn add vue-the-new-mask
 or
-npm i -S vue-the-mask
+npm i -S vue-the-new-mask
 ```
 
 ## Usage (two flavors)
@@ -21,14 +21,14 @@ npm i -S vue-the-mask
 ### Global
 
 ```javascript
-import VueTheMask from 'vue-the-mask'
+import VueTheMask from 'vue-the-new-mask'
 Vue.use(VueTheMask)
 ```
 
 ### Local (inside the component)
 
 ```javascript
-import {TheMask} from 'vue-the-mask'
+import {TheMask} from 'vue-the-new-mask'
 export default {
   components: {TheMask}
 }
@@ -37,7 +37,7 @@ export default {
 ### Local (as directive)
 
 ```javascript
-import {mask} from 'vue-the-mask'
+import {mask} from 'vue-the-new-mask'
 export default {
   directives: {mask}
 }
