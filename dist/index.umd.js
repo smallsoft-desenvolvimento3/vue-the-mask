@@ -1,5 +1,5 @@
 /*!
- * vue-the-new-mask v0.13.0
+ * vue-the-new-mask v0.13.1
  * (c) Marcos Neves <marcos.neves@gmail.com> (https://vuejs-tips.github.io/)
  * Released under the MIT License.
  */
@@ -369,7 +369,7 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c('div', [_vm._v("\nasdsadas\n  "), _c('input', {
+    return _c('input', {
       directives: [{
         name: "mask",
         rawName: "v-mask",
@@ -385,7 +385,7 @@
       on: {
         "input": _vm.onInput
       }
-    })]);
+    });
   };
 
   var __vue_staticRenderFns__ = [];
